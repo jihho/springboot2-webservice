@@ -5,6 +5,7 @@ import com.jiho.book.springboot.web.dto.PostsResponseDto;
 import com.jiho.book.springboot.web.dto.PostsSaveRequestDto;
 import com.jiho.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -13,17 +14,23 @@ public class PostsApiController {
 
     private final PostsService postsService;
 
-    @PostMapping("/api/v1/posts")
+    @GetMapping("/api/board")
+    public String index(Model model) {
+        model.addAttribute("posts", postsService.findAllDesc());
+        return "index";
+    }
+
+    @PostMapping("/api/board/posts")
     public Long save(@RequestBody PostsSaveRequestDto requestDto) {
         return postsService.save(requestDto);
     }
 
-    @PutMapping("/api/v1/posts/{id}")
+    @PutMapping("/api/board/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestsDto) {
         return postsService.update(id, requestsDto);
     }
 
-    @GetMapping("/api/v1/posts/{id}")
+    @GetMapping("/api/board/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
     }

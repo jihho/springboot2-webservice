@@ -45,7 +45,7 @@ export default {
                 content: this.content
             }
 
-            this.$http.post('/api/v1/posts', this.data)
+            this.$http.post('/api/board/posts', this.data)
             .then((res) => {
                 if(res.status == 200) {
                     alert('글이 등록되었습니다.');
