@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6">
-                    <b-button variant="success">글 등록</b-button>
+                    <b-button variant="success" @click="write">글 등록</b-button>
                 </div>
             </div>
             <br>
@@ -19,11 +19,11 @@
                 </tr>
                 </thead>
                 <tbody id="tbody">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr v-for="item in list" v-bind:key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.author}}</td>
+                    <td>{{item.modifiedDate}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -33,7 +33,28 @@
 
 <script>
 export default {
-    
+    data: function() {
+        return { 
+            list: []
+        }
+    },
+    methods: {
+        write() {
+            this.$router.push('/board/write');
+        }
+    },
+    mounted() {
+        let $vm = this;
+
+        this.$http.get('/api/board')
+        .then((res) => {
+            console.log(res);
+            $vm.list = res.data;    
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
 }
 </script>
 
