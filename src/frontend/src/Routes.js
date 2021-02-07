@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from './pages/Login/Login.vue'
 import WriteBoard from './pages/Board/Write.vue'
 import ListBoard from './pages/Board/List.vue'
+import ViewBoard from './pages/Board/View.vue'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
             path: '/board/list',
             name: 'ListBoard',
             component: ListBoard
+        },
+        {
+            path: '/board/view',
+            name: 'ViewBoard',
+            component: ViewBoard
         }
     ]
 })
