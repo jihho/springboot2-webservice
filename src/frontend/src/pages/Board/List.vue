@@ -21,7 +21,7 @@
                 <tbody id="tbody">
                 <tr v-for="item in list" v-bind:key="item.id">
                     <td>{{item.id}}</td>
-                    <td>{{item.title}}</td>
+                    <td @click="fnView(`${item.id}`)" class="td-title">{{item.title}}</td>
                     <td>{{item.author}}</td>
                     <td>{{item.modifiedDate}}</td>
                 </tr>
@@ -35,12 +35,17 @@
 export default {
     data: function() {
         return { 
-            list: []
+            list: [],
+            num: ''
         }
     },
     methods: {
         write() {
             this.$router.push('/board/write');
+        },
+        fnView(num) {
+            this.num = num;
+            this.$router.push({path:'/board/view', query: {id: this.num}});
         }
     },
     mounted() {
@@ -59,5 +64,7 @@ export default {
 </script>
 
 <style scoped>
-
+.td-title {
+    cursor: pointer;
+}
 </style>

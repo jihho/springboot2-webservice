@@ -7,16 +7,16 @@
                     <div class="form-group">
                         <label for="id">글번호</label>
                         <input type="text" class="form-control"
-                            id="id" value="" readonly>
+                            id="id" v-model="boardId" readonly>
                     </div>
                     <div class="form-group">
                         <label for="title">제목</label>
                         <input type="text" class="form-control"
-                            id="title" value="">
+                            id="title" v-model="title">
                     </div>
                     <div class="form-group">
                         <label for="content">내용</label>
-                        <textarea class="form-control" id="content"></textarea>
+                        <textarea class="form-control" id="content" v-model="content"></textarea>
                     </div>
                 </form>
                 <b-button variant="warning">취소</b-button>
@@ -29,7 +29,33 @@
 
 <script>
 export default {
-    
+    data() {
+        return {
+            boardId: this.$router.history.current.query.id,
+            title: '',
+            content: '',
+            author: ''
+        }
+    },
+    mounted() {
+        this.fnGetView();
+    },
+    methods: {
+        fnGetView() {
+            let $vm = this;
+
+            this.$http.get('/api/board/posts/' + this.boardId)
+            .then((res) => {
+                console.log(res);
+                $vm.title = res.data.title;
+                $vm.content = res.data.content;
+                $vm.author = res.data.author;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }
+    }
 }
 </script>
 
