@@ -19,9 +19,11 @@
                         <textarea class="form-control" id="content" v-model="content"></textarea>
                     </div>
                 </form>
-                <b-button variant="warning">취소</b-button>
+                <b-button @click="fnGoList()">취소</b-button>
                 &nbsp;&nbsp;
-                <b-button id="btn-update" variant="success">수정 완료</b-button>
+                <b-button id="btn-update" @click="fnUpdatePosts()" variant="success">수정 완료</b-button>
+                &nbsp;&nbsp;
+                <b-button @click="fnDeletePosts()" variant="warning">삭제</b-button>
             </div>
         </div>
     </div>
@@ -54,6 +56,33 @@ export default {
             .catch((err) => {
                 console.log(err);
             })
+        },
+        fnUpdatePosts() {
+            let data = {
+                title: this.title,
+                content: this.content
+            }
+            
+            this.$http.put(`/api/board/posts/${this.boardId}`, data)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        },
+        fnDeletePosts() {
+            this.$http.delete(`/api/board/posts/${this.boardId}`)
+            .then((res) => {
+                console.log(res);
+                this.$router.push('/board/list');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        },
+        fnGoList() {
+            this.$router.push('/board/list');
         }
     }
 }
