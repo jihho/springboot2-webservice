@@ -39,6 +39,10 @@
                                 placeholder="Password" class="form-control no-border">
                         </div>
                         <button type="submit" class="btn auth-btn mb-3 btn-info btn-sm">Login</button>
+                        <b-button variant="primary" class="social-button mb-2">
+                            <img src="../../assets/google_icon.png" id="google-img">
+                            <p class="social-text">GOOGLE</p>
+                        </b-button>
                     </form>
                 </div>
             </section>
@@ -202,5 +206,21 @@ h3 {
 .auth-logo span {
     display: inline-block;
     margin: 0 20px;
+}
+.social-button {
+    width: 100%;
+    height: 32px;
+    line-height: 1.3;
+    font-size: 13px;
+    border-radius: 7px;
+}
+#google-img {
+    width:15px;
+    height:15px;
+    margin-right: 5px;
+    margin-left: -20px;
+}
+.social-text {
+    display: inline;
 }
 </style>
