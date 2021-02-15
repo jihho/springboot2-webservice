@@ -68,7 +68,7 @@ export default {
     padding-right: 20px;
     padding-left: 20px;
     margin-right: auto;
-    margin-left: autu;
+    margin-left: auto;
 }
 .auth-logo {
     margin-top: 15px;
@@ -99,7 +99,6 @@ export default {
     padding: 15px 20px;
     background: #fff;
     border-radius: .45rem;
-    box-shadow: var(--widget-shadow);
 }
 .widget>header {
     margin: -15px -20px;
