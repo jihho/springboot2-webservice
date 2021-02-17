@@ -39,7 +39,7 @@
                                 placeholder="Password" class="form-control no-border">
                         </div>
                         <button type="submit" class="btn auth-btn mb-3 btn-info btn-sm">Login</button>
-                        <b-button variant="primary" class="social-button mb-2">
+                        <b-button variant="primary" class="social-button mb-2" @click="googleLogin()">
                             <img src="../../assets/google_icon.png" id="google-img">
                             <p class="social-text">GOOGLE</p>
                         </b-button>
@@ -52,7 +52,11 @@
 
 <script>
 export default {
-    
+    methods: {
+        googleLogin() {
+            
+        }
+    }
 }
 </script>
 
